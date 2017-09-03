@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- sweetalert2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.css">
+</head>
+<style>
+    body {
+        text-align: center;
+        margin-top: 36px;
+    }
+
+    span {
+        font-size: 36px;
+    }
+
+    .form-control {
+        display: inline-block;
+        width: 36%;
+    }
+</style>
+
+<body class="container">
+    <h1>猜數字</h1>
+    <span id="num1">1</span>
+    <span><---></span>
+    <span id="num2">100</span>
+    <br>
+    <input type="number" onkeypress="enterChecked(event)" class="form-control" id="guessNum" />
+    <button onclick="confirm()" class="btn btn-primary">確認</button>
+
+    <script>
+        function enterChecked(event) {
+            if(event.which == 13) {
+                confirm();
+            }
+        }
+        var times = 0;
+        var ans = Math.floor(Math.random() * 100) + 1;
+        function confirm() {
+            var guessNum = $("#guessNum").val() / 1;
+            var lowNum = $("#num1").text();
+            var highNum = $("#num2").text();
+            times++;
+            if (guessNum < ans && guessNum > lowNum) {
+                $("#num1").text(guessNum);
+            } else if (guessNum > ans && guessNum < highNum) {
+                $("#num2").text(guessNum);
+            } else if (guessNum == ans) {
+                swal(
+                    '猜中了！',
+                    '一共猜了' + times + '次',
+                    'success'
+                )
+            } else {
+                swal(
+                    'Oops',
+                    '哪裡錯了喔',
+                    'error'
+                )
+            }
+            $("#guessNum").val("");
+        }
+
+    </script>
+</body>
+
+</html>
