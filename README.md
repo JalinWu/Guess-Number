@@ -1,3 +1,3 @@
-# Guess-Number
+# GuessNumber
 
-猜數字遊戲
+A very simple game, just guess a number!
